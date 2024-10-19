@@ -1,17 +1,17 @@
 -- stylua: ignore
 return {
   a = {
-    bg      = "#F1F1F1",
-    float   = "#E9E1DB",
-    sel     = "#D9D3CE",
-    ui      = "#A98A78",
-    com     = "#7D6658",
-    fg      = "#54433A",
+    bg    = "#F5F5F5",
+    float = "#eeeeee",
+    sel   = "#E3E3E3",
+    ui    = "#d6d6d6",
+    com   = "#8e908c",
+    fg    = "#212121",
   },
   b = {
     red     = "#BF0021",
     yellow  = "#A06D00",
-    green   = "#3A684A",
+    green   = "#067D17",
     cyan    = "#3D6568",
     blue    = "#465AA4",
     magenta = "#904180",

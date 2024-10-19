@@ -2,6 +2,10 @@ vim.cmd 'highlight clear'
 vim.cmd 'syntax reset'
 vim.g.colors_name = 'melange'
 
+vim.cmd [[
+match Todo /TODO: .*/
+]]
+
 local bg = vim.opt.background:get()
 
 -- package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
@@ -33,7 +37,7 @@ for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
 
   Normal = { fg = a.fg, bg = a.bg },
-  NormalFloat = { bg = a.float },
+  NormalFloat = { bg = a.bg },
   FloatTitle = { fg = c.yellow, bg = a.float },
   FloatFooter = { fg = c.yellow, bg = a.float },
   -- NormalNC = {},
@@ -47,13 +51,13 @@ for name, attrs in pairs {
   ColorColumn = { bg = a.float },
   CursorColumn = 'ColorColumn',
   CursorLine = 'ColorColumn',
-  VertSplit = { fg = a.ui },
+  VertSplit = { fg = a.fg },
   WinSeparator = { fg = a.ui },
 
   LineNr = { fg = a.ui },
   CursorLineNr = { fg = c.yellow },
 
-  Folded = { fg = a.com, bg = d.cyan },
+  Folded = { fg = a.com, bg = a.ui },
   FoldColumn = 'LineNr',
   SignColumn = 'LineNr',
 
@@ -75,6 +79,7 @@ for name, attrs in pairs {
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
+  CurSearch = { fg = a.bg, bg = c.green, bold = bold },
   -- QuickFixLine = {},
   -- IncSearch = {},
   Visual = { bg = a.sel },
@@ -86,7 +91,7 @@ for name, attrs in pairs {
   NonText = 'Whitespace',
   SpecialKey = 'Whitespace',
 
-  Directory = { fg = c.cyan },
+  Directory = { fg = b.blue },
   Title = { fg = c.yellow },
   ErrorMsg = { bg = d.red },
   ModeMsg = { fg = a.com },
@@ -117,15 +122,15 @@ for name, attrs in pairs {
 
   Comment = { fg = a.com, italic = italic },
   Identifier = { fg = a.fg },
-  Function = { fg = b.yellow },
+  Function = { fg = a.fg },
   Constant = { fg = c.magenta },
-  String = { fg = b.blue, italic = italic },
+  String = { fg = b.green, italic = italic },
   Character = { fg = c.blue },
   Number = { fg = b.magenta },
   Boolean = 'Number',
   -- Float = {},
 
-  Statement = { fg = c.yellow },
+  Statement = { fg = b.red },
   -- Conditional = {},
   -- Repeat = {},
   -- Label = {},
@@ -139,7 +144,7 @@ for name, attrs in pairs {
   -- Macro = {},
   -- PreCondit = {},
 
-  Type = { fg = c.cyan },
+  Type = { fg = b.blue, bold = true },
   -- StorageClass = {},
   -- Structure = {},
   -- Typedef = {},
@@ -157,7 +162,7 @@ for name, attrs in pairs {
 
   Ignore = { fg = a.ui },
   Error = { bg = d.red },
-  Todo = { fg = a.com, bold = bold },
+  Todo = { fg = b.red, bold = bold },
 
   ---- :help nvim-treesitter-highlights (external plugin) ----
 
@@ -198,7 +203,7 @@ for name, attrs in pairs {
   ['@constant.macro'] = 'Constant',
   ['@module'] = 'Identifier',
   ['@module.builtin'] = '@module',
-  ['@label'] = { fg = b.cyan },
+  ['@label'] = { fg = b.magenta, bold = bold },
   ['@variable'] = 'Identifier',
   ['@variable.builtin'] = '@string.special.symbol',
   -- ['@variable.parameter'] = {},
@@ -217,7 +222,7 @@ for name, attrs in pairs {
   -- ['@function.method'] = {},
   -- ['@constructor'] = {},
 
-  -- ['@punctuation.bracket'] = {},
+  ['@punctuation.bracket'] = { fg = a.fg },
   ['@punctuation.delimiter'] = { fg = c.red },
   -- ['@punctuation.special'] = {},
 
@@ -230,9 +235,9 @@ for name, attrs in pairs {
 
   -- ['@markup'] = {},
   ['@markup.heading'] = 'Title',
-  ['@markup.heading.2'] = { fg = b.yellow },
-  ['@markup.heading.3'] = { fg = b.green },
-  ['@markup.heading.4'] = { fg = b.cyan },
+  ['@markup.heading.2'] = { fg = b.yellow, bold = true },
+  ['@markup.heading.3'] = { fg = b.green, bold = true },
+  ['@markup.heading.4'] = { fg = b.cyan, bold = true },
 
   ['@markup.italic'] = { italic = italic },
   ['@markup.strong'] = { bold = bold },
@@ -292,9 +297,9 @@ for name, attrs in pairs {
 
   ---- :help lsp-highlight -----------------------------------
 
-  -- LspReferenceText = 'Visual',
-  -- LspReferenceRead = 'Visual',
-  -- LspReferenceWrite = 'Visual',
+  LspReferenceText = { bg = d.blue },
+  LspReferenceRead = { bg = d.blue },
+  LspReferenceWrite = { bg = d.blue },
 
   -- TODO: lsp-highlight-codelens
 
@@ -310,7 +315,7 @@ for name, attrs in pairs {
   -- ['@lsp.type.interface'] = 'Structure',
   ['@lsp.type.macro'] = {},
   -- ['@lsp.type.method'] = 'Function',
-  ['@lsp.type.namespace'] = { fg = c.green },
+  ['@lsp.type.namespace'] = { fg = b.green, bold = bold },
   ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
   -- ['@lsp.type.property'] = 'Identifier',
   -- ['@lsp.type.struct'] = 'Structure',
@@ -339,6 +344,7 @@ for name, attrs in pairs {
   NeoTreeNormalNC = 'NeoTreeNormal',
   NeoTreeVertSplit = { bg = a.bg, fg = a.bg },
   NeoTreeWinSeparator = 'NeoTreeVertSplit',
+  NeoTreeIndentMarker = 'Whitespace',
 
   NeoTreeCursorLine = { bg = a.sel },
 
@@ -408,7 +414,7 @@ vim.g.terminal_color_0 = a.float
 vim.g.terminal_color_1 = c.red
 vim.g.terminal_color_2 = c.green
 vim.g.terminal_color_3 = c.yellow
-vim.g.terminal_color_4 = c.blue
+vim.g.terminal_color_4 = b.blue
 vim.g.terminal_color_5 = c.magenta
 vim.g.terminal_color_6 = c.cyan
 vim.g.terminal_color_7 = a.com
