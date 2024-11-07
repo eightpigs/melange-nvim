@@ -13,7 +13,7 @@ return {
     yellow  = "#A06D00",
     green   = "#067D17",
     cyan    = "#3D6568",
-    blue    = "#465AA4",
+    blue    = "#3971ed",
     magenta = "#904180",
   },
   c = {
@@ -21,7 +21,8 @@ return {
     yellow  = "#BC5C00",
     green   = "#6E9B72",
     cyan    = "#739797",
-    blue    = "#7892BD",
+    -- blue    = "#7892BD",
+    blue    = "#465AA4",
     magenta = "#BE79BB",
   },
   d = {

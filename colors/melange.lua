@@ -91,7 +91,7 @@ for name, attrs in pairs {
   NonText = 'Whitespace',
   SpecialKey = 'Whitespace',
 
-  Directory = { fg = b.blue },
+  Directory = { fg = c.blue },
   Title = { fg = c.yellow },
   ErrorMsg = { bg = d.red },
   ModeMsg = { fg = a.com },
